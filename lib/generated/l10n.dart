@@ -64,6 +64,26 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Route not found`
+  String get unknown_route {
+    return Intl.message(
+      'Route not found',
+      name: 'unknown_route',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Opps!! This page is not yet ready`
+  String get page_not_implemented {
+    return Intl.message(
+      'Opps!! This page is not yet ready',
+      name: 'page_not_implemented',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {

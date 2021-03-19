@@ -1,0 +1,1 @@
+const ViewWeatherForCity = 'ViewWeatherForCity';

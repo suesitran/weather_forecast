@@ -1,5 +1,7 @@
 {
   "weather_forecast_title": "Weather Forecast",
   "to_be_updated" : "To be updated",
-  "city_listing" : "Cities"
+  "city_listing" : "Cities",
+  "unknown_route" : "Route not found",
+  "page_not_implemented": "Opps!! This page is not yet ready"
 }

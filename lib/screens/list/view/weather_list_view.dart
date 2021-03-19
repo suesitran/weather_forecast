@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/generated/l10n.dart';
+import 'package:weather_forecast/screens/cities/data/city_data.dart';
 
 class WeatherListView extends StatefulWidget {
-  WeatherListView({Key key}) : super(key: key);
+  final City _city;
+  WeatherListView(this._city) : super();
 
   @override
   _WeatherListViewState createState() {

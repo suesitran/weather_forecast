@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:weather_forecast/generated/l10n.dart';
 import 'package:weather_forecast/screens/cities/model/city_list_model.dart';
+import 'package:weather_forecast/navigation/routes.dart';
 
 class CityListView extends StatefulWidget {
   CityListView({Key key}) : super(key: key);
@@ -36,6 +37,7 @@ class _CityListViewState extends State<CityListView> {
               itemBuilder: (context, index) => ListTile(
                 title: Text(model.cities[index].name),
                 subtitle: Text(model.cities[index].country),
+                onTap: () => Navigator.of(context).pushNamed(ViewWeatherForCity, arguments: model.cities[index]),
               ),
           itemCount: model.cities.length,),
         ),

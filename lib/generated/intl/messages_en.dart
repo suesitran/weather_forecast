@@ -22,7 +22,9 @@ class MessageLookup extends MessageLookupByLibrary {
   final messages = _notInlinedMessages(_notInlinedMessages);
   static _notInlinedMessages(_) => <String, Function> {
     "city_listing" : MessageLookupByLibrary.simpleMessage("Cities"),
+    "page_not_implemented" : MessageLookupByLibrary.simpleMessage("Opps!! This page is not yet ready"),
     "to_be_updated" : MessageLookupByLibrary.simpleMessage("To be updated"),
+    "unknown_route" : MessageLookupByLibrary.simpleMessage("Route not found"),
     "weather_forecast_title" : MessageLookupByLibrary.simpleMessage("Weather Forecast")
   };
 }
