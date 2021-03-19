@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/generated/l10n.dart';
 import 'package:weather_forecast/navigation/routes.dart';
+import 'package:weather_forecast/retrofit/weather_forecast_client.dart';
 import 'package:weather_forecast/screens/cities/data/city_data.dart';
 import 'package:weather_forecast/screens/cities/view/city_list_view.dart';
+import 'package:weather_forecast/screens/detail/view/weather_detail_view.dart';
 import 'package:weather_forecast/screens/list/view/weather_list_view.dart';
 
 void main() {
@@ -33,6 +35,8 @@ class MyApp extends StatelessWidget {
     switch(settings.name) {
       case ViewWeatherForCity:
         return WeatherListView(settings.arguments as City);
+      case ViewWeatherDetail:
+        return WeatherDetailView(settings.arguments as List<WeatherInfo>);
     }
 
     return Scaffold(

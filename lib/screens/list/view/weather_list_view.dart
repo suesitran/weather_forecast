@@ -42,6 +42,7 @@ class _WeatherListViewState extends State<WeatherListView> {
             title: Text(model.weather[index].displayableDate),
             subtitle: Text(model.getWeatherSummary(model.weather[index].weatherInfo)),
             leading: Image.network(model.getWeatherIcon(model.weather[index].weatherInfo)),
+            onTap: () => Navigator.pushNamed(context, ViewWeatherDetail, arguments: model.weather[index].weatherInfo),
           ),
           itemCount: model.weather.length,)),
       ),
