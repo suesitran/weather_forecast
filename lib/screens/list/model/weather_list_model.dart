@@ -91,9 +91,7 @@ class WeatherListModel extends Model {
       if (element.weather.length > 0) {
         // only use Info item when there's 'weather' detail
         final weatherDetail = WeatherDetail(element.weather.first.description, _getIconUrl(element.weather.first.id), element);
-        final date = DateTime.fromMillisecondsSinceEpoch(
-            element.dt * 1000, isUtc: true);
-        map.update(_df.format(date), (value) => value..add(weatherDetail),
+        map.update(_df.format(element.dt), (value) => value..add(weatherDetail),
             ifAbsent: () => [weatherDetail]);
       }
     });

@@ -33,7 +33,7 @@ class WeatherReportResponse {
 }
 
 class WeatherInfo {
-  int dt;
+  DateTime dt;
   Main main;
   List<Weather> weather;
   Cloud clouds;
@@ -44,7 +44,7 @@ class WeatherInfo {
   int visibility;
 
   WeatherInfo.fromJson(Map<String, dynamic> json)
-      : this.dt = int.parse("${json['dt']}"),
+      : this.dt = DateTime.fromMillisecondsSinceEpoch(int.parse("${json['dt']}") * 1000, isUtc: true),
         this.main = Main.fromJson(json['main']),
         this.weather =
             (json['weather'] as List).map((e) => Weather.fromJson(e)).toList(),
