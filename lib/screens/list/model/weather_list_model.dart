@@ -85,14 +85,13 @@ class WeatherListModel extends Model {
 
     _weather.clear();
 
-    Map<String, List<WeatherDetail>> map = {};
+    Map<String, List<WeatherInfo>> map = {};
 
     response.list.forEach((element) {
       if (element.weather.length > 0) {
         // only use Info item when there's 'weather' detail
-        final weatherDetail = WeatherDetail(element.weather.first.description, _getIconUrl(element.weather.first.id), element);
-        map.update(_df.format(element.dt), (value) => value..add(weatherDetail),
-            ifAbsent: () => [weatherDetail]);
+        map.update(_df.format(element.dt), (value) => value..add(element),
+            ifAbsent: () => [element]);
       }
     });
 
@@ -111,4 +110,8 @@ class WeatherListModel extends Model {
 
     return iconName == null ? null : "https://openweathermap.org/img/wn/$iconName$dayNightSuffix@2x.png";
   }
+
+  String getWeatherSummary(List<WeatherInfo> infos) => infos.first.weather.first.description;
+
+  String getWeatherIcon(List<WeatherInfo> infos) => _getIconUrl(infos.first.weather.first.id);
 }
