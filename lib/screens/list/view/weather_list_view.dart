@@ -39,16 +39,12 @@ class _WeatherListViewState extends State<WeatherListView> {
         body: ScopedModelDescendant<WeatherListModel>(
           builder: (context, child, model) => ListView.builder(itemBuilder: (context, index) => ListTile(
             title: Text(model.weather[index].displayableDate),
-            subtitle: Text(model.weather[index].weatherInfo.first.weather.first.description),
+            subtitle: Text(model.weather[index].weatherInfo.first.summary),
+            leading: Image.network(model.weather[index].weatherInfo.first.iconUrl)
           ),
           itemCount: model.weather.length,)),
       ),
     );
   }
 
-  Widget _buildWeatherPage(WeatherInfo weatherInfo) {
-    return Center(
-      child: Text("Info for ${weatherInfo.dt_txt}, and ${DateTime.fromMillisecondsSinceEpoch(weatherInfo.dt * 1000, isUtc: true)}"),
-    );
-  }
 }
