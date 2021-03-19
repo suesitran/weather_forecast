@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:weather_forecast/generated/l10n.dart';
-import 'package:weather_forecast/screens/list/view/weather_list_view.dart';
+import 'package:weather_forecast/screens/cities/view/city_list_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: WeatherListView(),
+      home: CityListView(),
       localizationsDelegates: [
         Strings.delegate,
       ],

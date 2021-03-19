@@ -54,6 +54,16 @@ class Strings {
       args: [],
     );
   }
+
+  /// `Cities`
+  String get city_listing {
+    return Intl.message(
+      'Cities',
+      name: 'city_listing',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
