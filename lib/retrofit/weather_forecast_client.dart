@@ -1,6 +1,5 @@
 import 'package:retrofit/http.dart';
 import 'package:dio/dio.dart';
-import 'package:json_annotation/json_annotation.dart';
 
 part 'weather_forecast_client.g.dart';
 
@@ -10,7 +9,7 @@ abstract class WeatherForecastClient {
       _WeatherForecastClient;
 
   @GET("/2.5/forecast")
-  Future<WeatherReportResponse> loadWeatherReport3Hourly();
+  Future<WeatherReportResponse> loadWeatherReport3Hourly(@Query('id') String cityId, @Query('appid') String appApi);
 }
 
 class WeatherReportResponse {
@@ -21,9 +20,9 @@ class WeatherReportResponse {
 
   WeatherReportResponse.fromJson(Map<String, dynamic> json)
       : this.cod = json['cod'],
-        this.message = json['message'],
-        this.cnt = json['cnt'],
-        this.list = (json['list'] as List).map((e) => WeatherInfo.fromJson(e));
+        this.message = double.parse("${json['message']}"),
+        this.cnt = int.parse("${json['cnt']}"),
+        this.list = json['list'] == null ? [] : (json['list'] as List).map((e) => WeatherInfo.fromJson(e)).toList();
 
   Map<String, dynamic> toJson() => {
         'cod': cod,
@@ -45,16 +44,16 @@ class WeatherInfo {
   int visibility;
 
   WeatherInfo.fromJson(Map<String, dynamic> json)
-      : this.dt = json['dt'],
+      : this.dt = int.parse("${json['dt']}"),
         this.main = Main.fromJson(json['main']),
         this.weather =
-            (json['weather'] as List).map((e) => Weather.fromJson(e)),
+            (json['weather'] as List).map((e) => Weather.fromJson(e)).toList(),
         this.clouds = Cloud.fromJson(json['clouds']),
         this.wind = Wind.fromJson(json['wind']),
         this.snow = Snow.fromJson(json['snow']),
         this.sys = Sys.fromJson(json['sys']),
         this.dt_txt = json['dt_txt'],
-        this.visibility = json['visibility'];
+        this.visibility = int.parse("${json['visibility']}");
 
   Map<String, dynamic> toJson() => {
         'dt': dt,
@@ -80,14 +79,14 @@ class Main {
   double temp_kf;
 
   Main.fromJson(Map<String, dynamic> json)
-      : this.temp = json['temp'],
-        this.temp_min = json['temp_min'],
-        this.temp_max = json['temp_max'],
-        this.pressure = json['pressure'],
-        this.sea_level = json['sea_level'],
-        this.grnd_level = json['grnd_level'],
-        this.humidity = json['humidity'],
-        this.temp_kf = json['temp_kf'];
+      : this.temp = double.parse("${json['temp']}"),
+        this.temp_min = double.parse("${json['temp_min']}"),
+        this.temp_max = double.parse("${json['temp_max']}"),
+        this.pressure = double.parse("${json['pressure']}"),
+        this.sea_level = double.parse("${json['sea_level']}"),
+        this.grnd_level = double.parse("${json['grnd_level']}"),
+        this.humidity = double.parse("${json['humidity']}"),
+        this.temp_kf = double.parse("${json['temp_kf']}");
 
   Map<String, dynamic> toJson() => {
         'temp': temp,
@@ -108,7 +107,7 @@ class Weather {
   String icon;
 
   Weather.fromJson(Map<String, dynamic> json)
-      : this.id = json['id'],
+      : this.id = int.parse("${json['id']}"),
         this.main = json['main'],
         this.description = json['description'],
         this.icon = json['icon'];
@@ -120,7 +119,7 @@ class Weather {
 class Cloud {
   int all;
 
-  Cloud.fromJson(Map<String, dynamic> json) : this.all = json['all'];
+  Cloud.fromJson(Map<String, dynamic> json) : this.all = int.parse("${json['all']}");
 
   Map<String, dynamic> toJson() => {'all': all};
 }
@@ -130,8 +129,8 @@ class Wind {
   double deg;
 
   Wind.fromJson(Map<String, dynamic> json)
-      : this.speed = json['speed'],
-        this.deg = json['deg'];
+      : this.speed = double.parse("${json['speed']}"),
+        this.deg = double.parse("${json['deg']}");
 
   Map<String, dynamic> toJson() => {'speed': this.speed, 'deg': this.deg};
 }

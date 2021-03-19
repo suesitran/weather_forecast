@@ -15,5 +15,14 @@ class WeatherForecastService {
     _client = WeatherForecastClient(dio);
   }
 
-  Future<WeatherReportResponse> loadWeatherReport3Hourly() => _client.loadWeatherReport3Hourly();
+  Future<WeatherReportResponse> loadWeatherReport3Hourly(String cityId, String appId) async {
+    WeatherReportResponse response;
+    // try {
+      response = await _client.loadWeatherReport3Hourly(cityId, appId);
+    // } catch(e) {
+    //   print("Weather Forecast Client exception ${e.stracktrace}");
+    // }
+
+    return response;
+  }
 }

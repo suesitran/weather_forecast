@@ -17,9 +17,11 @@ class _WeatherForecastClient implements WeatherForecastClient {
   String baseUrl;
 
   @override
-  Future<WeatherReportResponse> loadWeatherReport3Hourly() async {
+  Future<WeatherReportResponse> loadWeatherReport3Hourly(cityId, appApi) async {
+    ArgumentError.checkNotNull(cityId, 'cityId');
+    ArgumentError.checkNotNull(appApi, 'appApi');
     const _extra = <String, dynamic>{};
-    final queryParameters = <String, dynamic>{};
+    final queryParameters = <String, dynamic>{r'id': cityId, r'appid': appApi};
     final _data = <String, dynamic>{};
     final _result = await _dio.request<Map<String, dynamic>>('/2.5/forecast',
         queryParameters: queryParameters,

@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:weather_forecast/generated/l10n.dart';
+import 'package:scoped_model/scoped_model.dart';
+import 'package:weather_forecast/retrofit/weather_forecast_client.dart';
 import 'package:weather_forecast/screens/cities/data/city_data.dart';
+import 'package:weather_forecast/screens/list/model/weather_list_model.dart';
+import 'package:intl/date_symbol_data_local.dart';
 
 class WeatherListView extends StatefulWidget {
   final City _city;
@@ -16,6 +19,8 @@ class _WeatherListViewState extends State<WeatherListView> {
   @override
   void initState() {
     super.initState();
+
+    initializeDateFormatting('en_EN', null);
   }
 
   @override
@@ -25,13 +30,25 @@ class _WeatherListViewState extends State<WeatherListView> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(
-        title: Text(Strings.of(context).weather_forecast_title),
+    return ScopedModel<WeatherListModel>(
+      model: WeatherListModel(context, widget._city.id),
+      child: Scaffold(
+        appBar: AppBar(
+          title: Text(widget._city.name),
+        ),
+        body: ScopedModelDescendant<WeatherListModel>(
+          builder: (context, child, model) => ListView.builder(itemBuilder: (context, index) => ListTile(
+            title: Text(model.weather[index].displayableDate),
+            subtitle: Text(model.weather[index].weatherInfo.first.weather.first.description),
+          ),
+          itemCount: model.weather.length,)),
       ),
-      body: Center(
-        child: Text(Strings.of(context).to_be_updated),
-      ),
+    );
+  }
+
+  Widget _buildWeatherPage(WeatherInfo weatherInfo) {
+    return Center(
+      child: Text("Info for ${weatherInfo.dt_txt}, and ${DateTime.fromMillisecondsSinceEpoch(weatherInfo.dt * 1000, isUtc: true)}"),
     );
   }
 }
