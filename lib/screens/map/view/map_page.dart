@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:maps/maps.dart';
 import 'package:scoped_model/scoped_model.dart';
-import 'package:weather_forecast/config.dart';
 import 'package:weather_forecast/screens/map/model/map_model.dart';
 
 class MapPage extends StatelessWidget {
@@ -29,7 +28,7 @@ class MapPage extends StatelessWidget {
                       geoPoint: model.cities?.isEmpty == true
                           ? GeoPoint(-37.68, 144.76)
                           : _coordToGeoPoint(model.cities.first.coord),
-                      zoom: Zoom(8)),
+                      zoom: Zoom(12)),
                   markers: model.cities?.isEmpty == true
                       ? <MapMarker>{}
                       : model.cities
