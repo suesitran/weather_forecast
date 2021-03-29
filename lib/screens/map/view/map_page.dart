@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:maps/maps.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:weather_forecast/screens/map/model/map_model.dart';
+import 'package:weather_forecast/generated/l10n.dart';
 
 class MapPage extends StatelessWidget {
   MapPage({Key key}) : super(key: key);
@@ -20,7 +21,7 @@ class MapPage extends StatelessWidget {
         child: ScopedModelDescendant<MapModel>(
           builder: (context, child, model) => model.cities?.isEmpty == true
               ? Center(
-                  child: Text("Loading..."),
+                  child: Text(Strings.of(context).loading),
                 )
               : MapWidget(
                   location: MapLocation(
@@ -47,7 +48,5 @@ class MapPage extends StatelessWidget {
     );
   }
 
-  GeoPoint _coordToGeoPoint(Coord coord) {
-    return GeoPoint(coord.lat, coord.lon);
-  }
+  GeoPoint _coordToGeoPoint(Coord coord) => GeoPoint(coord.lat, coord.lon);
 }
