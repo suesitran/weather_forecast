@@ -7,7 +7,7 @@ class WeatherForecastService {
     return WeatherForecastService._internal();
   }
 
-  WeatherForecastClient _client;
+  WeatherForecastClient? _client;
 
   WeatherForecastService._internal() {
     final dio = Dio();   // Provide a dio instance
@@ -15,10 +15,10 @@ class WeatherForecastService {
     _client = WeatherForecastClient(dio);
   }
 
-  Future<WeatherReportResponse> loadWeatherReport3Hourly(String cityId, String appId) async {
-    WeatherReportResponse response;
+  Future<WeatherReportResponse?> loadWeatherReport3Hourly(String cityId, String appId) async {
+    WeatherReportResponse? response;
     // try {
-    response = await _client.loadWeatherReport3Hourly(cityId, appId);
+    response = await _client?.loadWeatherReport3Hourly(cityId, appId);
     // } catch(e) {
     //   print("Weather Forecast Client exception ${e.stracktrace}");
     // }

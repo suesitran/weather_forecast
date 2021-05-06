@@ -10,7 +10,9 @@ class LoadCityListModel extends MutableProviderData<List<City>> {
     final String data = await DefaultAssetBundle.of(context)
         .loadString("assets/city_list.json");
 
-    List<City> cities = (jsonDecode(data) as List).map((e) => City.fromJson(e)).toList();
+    List<City> cities = (jsonDecode(data) as List)
+        .map((e) => City.fromJson(e))
+        .toList();
 
     super.value = cities.sublist(0, 30);
   }

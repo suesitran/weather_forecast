@@ -31,8 +31,7 @@ class ProviderWidget<T> extends StatelessWidget {
   final ProviderWidgetBuilder<T> _builder;
 
   ProviderWidget(
-      {@required ProviderData<T> data, @required ProviderWidgetBuilder<
-          T> builder})
+      {required ProviderData<T> data, required ProviderWidgetBuilder<T> builder})
       : _data = data,
         _builder = builder;
 

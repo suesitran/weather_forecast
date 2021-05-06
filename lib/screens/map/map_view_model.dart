@@ -9,7 +9,6 @@ class MapViewModel extends MutableProviderData<ScreenState> {
   LoadCurrentLocationModel currentLocation = LoadCurrentLocationModel(null);
   LoadCityListModel cities = LoadCityListModel([]);
 
-
   MapViewModel() : super(ScreenState.LOADING) {
     currentLocation.addListener(_updateState);
     cities.addListener(_updateState);
@@ -18,7 +17,7 @@ class MapViewModel extends MutableProviderData<ScreenState> {
   }
 
   void _updateState() {
-    if (currentLocation.value != null && cities.value?.isNotEmpty == true) {
+    if (cities.value.isNotEmpty == true) {
       super.value = ScreenState.IDLE;
     }
   }

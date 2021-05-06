@@ -14,9 +14,14 @@ import 'intl/messages_all.dart';
 
 class Strings {
   Strings();
-  
-  static Strings current;
-  
+
+  static Strings? _current;
+
+  static Strings get current {
+    assert(_current != null, 'No instance of Strings was loaded. Try to initialize the Strings delegate before accessing Strings.current.');
+    return _current!;
+  }
+
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
 
@@ -25,13 +30,20 @@ class Strings {
     final localeName = Intl.canonicalizedLocale(name); 
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      Strings.current = Strings();
-      
-      return Strings.current;
+      final instance = Strings();
+      Strings._current = instance;
+ 
+      return instance;
     });
   } 
 
   static Strings of(BuildContext context) {
+    final instance = Strings.maybeOf(context);
+    assert(instance != null, 'No instance of Strings present in the widget tree. Did you add Strings.delegate in localizationsDelegates?');
+    return instance!;
+  }
+
+  static Strings? maybeOf(BuildContext context) {
     return Localizations.of<Strings>(context, Strings);
   }
 
@@ -63,11 +75,9 @@ class AppLocalizationDelegate extends LocalizationsDelegate<Strings> {
   bool shouldReload(AppLocalizationDelegate old) => false;
 
   bool _isSupported(Locale locale) {
-    if (locale != null) {
-      for (var supportedLocale in supportedLocales) {
-        if (supportedLocale.languageCode == locale.languageCode) {
-          return true;
-        }
+    for (var supportedLocale in supportedLocales) {
+      if (supportedLocale.languageCode == locale.languageCode) {
+        return true;
       }
     }
     return false;
