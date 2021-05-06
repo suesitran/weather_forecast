@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:weather_forecast/screens/map/view/map_page.dart';
+import 'package:weather_forecast/generated/l10n.dart';
+import 'package:weather_forecast/screens/map/map_view.dart';
 
 void main() {
   runApp(MyApp());
@@ -23,7 +24,10 @@ class MyApp extends StatelessWidget {
         // is not restarted.
         primarySwatch: Colors.blue,
       ),
-      home: MapPage(),
+      home: MapView(),
+      localizationsDelegates: [
+        Strings.delegate
+      ],
     );
   }
 }
