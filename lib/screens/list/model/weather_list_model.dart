@@ -77,8 +77,7 @@ class WeatherListModel extends Model {
 
   void _loadWeatherDetailForCity(BuildContext context, String cityId) async {
     // load app ID from assets/weather_api_key
-    final appId = await DefaultAssetBundle.of(context).loadString(
-        'assets/weather_api_key');
+    final appId = '23926531fe4cbe790fe83b4aa7785d8f';
 
     final response = await WeatherForecastService.instance
         .loadWeatherReport3Hourly(cityId, appId.trim());

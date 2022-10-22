@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:weather_forecast/generated/l10n.dart';
 import 'package:weather_forecast/navigation/routes.dart';
 import 'package:weather_forecast/retrofit/weather_forecast_client.dart';
@@ -7,7 +8,9 @@ import 'package:weather_forecast/screens/cities/view/city_list_view.dart';
 import 'package:weather_forecast/screens/detail/view/weather_detail_view.dart';
 import 'package:weather_forecast/screens/list/view/weather_list_view.dart';
 
-void main() {
+void main() async {
+  await SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
+
   runApp(MyApp());
 }
 

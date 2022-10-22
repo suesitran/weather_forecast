@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/rendering.dart';
 import 'package:scoped_model/scoped_model.dart';
 import 'package:weather_forecast/generated/l10n.dart';
 import 'package:weather_forecast/screens/cities/model/city_list_model.dart';
@@ -39,7 +40,8 @@ class _CityListViewState extends State<CityListView> {
                 subtitle: Text(model.cities[index].country),
                 onTap: () => Navigator.of(context).pushNamed(ViewWeatherForCity, arguments: model.cities[index]),
               ),
-          itemCount: model.cities.length,),
+          itemCount: model.cities.length,
+          ),
         ),
       ),
     );
